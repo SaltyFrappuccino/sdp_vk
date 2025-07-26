@@ -6,4 +6,4 @@ RUN npm install -g @vkontakte/vk-tunnel
 
 COPY ./frontend/vk-hosting-config.json /app/vk-hosting-config.json
 
-CMD ["vk-tunnel"]
+CMD ["vk-tunnel", "--host=frontend", "--port=80"]

@@ -22,13 +22,3 @@ services:
     depends_on:
       - backend
     restart: unless-stopped
-
-  vk-tunnel:
-    build:
-      context: .
-      dockerfile: Dockerfile.vk-tunnel
-    container_name: anketnica-vk-tunnel
-    depends_on:
-      - frontend
-    network_mode: "host"
-    restart: unless-stopped
