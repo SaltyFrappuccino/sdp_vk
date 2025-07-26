@@ -9,7 +9,7 @@ const verboseSqlite3 = sqlite3.verbose();
 // Функция для инициализации и подключения к БД
 export async function initializeDatabase() {
   db = await open({
-    filename: './anketi.db',
+    filename: 'anketi.db', // Путь относительно dist/index.js
     driver: verboseSqlite3.Database
   });
 

@@ -1,24 +1,13 @@
 version: '3.8'
 
 services:
-  backend:
+  app:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
-    container_name: anketnica-backend
+    container_name: anketnica-app
     ports:
       - "3000:3000"
     volumes:
-      - ./backend/anketi.db:/app/anketi.db
-    restart: unless-stopped
-
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: anketnica-frontend
-    ports:
-      - "8080:80"
-    depends_on:
-      - backend
+      - ./backend/anketi.db:/app/dist/anketi.db
     restart: unless-stopped
