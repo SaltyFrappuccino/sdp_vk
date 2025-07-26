@@ -1,0 +1,9 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+RUN npm install -g @vkontakte/vk-tunnel
+
+COPY ./frontend/vk-hosting-config.json /app/vk-hosting-config.json
+
+CMD ["vk-tunnel"]
