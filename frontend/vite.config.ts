@@ -47,7 +47,7 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         '/api': {
-          target: 'http://193.162.143.80:35571',
+          target: 'http://193.162.143.80:8000',
           changeOrigin: true,
         },
       },

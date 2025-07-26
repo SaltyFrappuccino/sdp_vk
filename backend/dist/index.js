@@ -9,19 +9,20 @@ import { swaggerSpec } from './swaggerConfig.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
-const port = 3000;
+const port = 8000;
 app.use(cors());
 app.use(express.json());
 // Обслуживание API
 app.use('/api', apiRouter);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-// Обслуживание статики фронтенда
-const frontendPath = path.join(__dirname, '..', 'frontend');
-app.use(express.static(frontendPath));
-// "Catch-all" маршрут для SPA
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(frontendPath, 'index.html'));
-});
+// Обслуживание статики фронтенда - закомментировано, т.к. фронтенд раздается отдельным сервером
+// const frontendPath = path.join(__dirname, '..', 'frontend');
+// app.use(express.static(frontendPath));
+//
+// // "Catch-all" маршрут для SPA
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(frontendPath, 'index.html'));
+// });
 async function startServer() {
     try {
         await initializeDatabase();
