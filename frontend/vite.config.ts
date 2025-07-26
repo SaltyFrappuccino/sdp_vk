@@ -44,5 +44,13 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: 'dist',
     },
+    server: {
+      proxy: {
+        '/api': {
+          target: 'http://193.162.143.80:35571',
+          changeOrigin: true,
+        },
+      },
+    },
   };
 });

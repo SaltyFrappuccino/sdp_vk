@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "tunnel": "vk-tunnel --http-protocol=http --host=localhost --port=5174",
+    "tunnel": "vk-tunnel --http-protocol=http --host=193.162.143.80 --port=3000",
     "deploy": "vite build && vk-miniapps-deploy"
   },
   "dependencies": {
