@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "Starting services..."
+docker-compose up --build -d
+echo "Services are running."
+echo "Frontend is available at http://localhost:8080"
+echo "Backend API is available at http://localhost:3000"
