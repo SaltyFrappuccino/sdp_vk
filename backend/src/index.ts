@@ -13,7 +13,9 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = 8000;
 
-app.use(cors());
+app.use(cors({
+  origin: ['*']
+}));
 app.use(express.json());
 
 // Обслуживание API
