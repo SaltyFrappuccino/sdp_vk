@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import legacy from '@vitejs/plugin-legacy';
 
@@ -21,18 +21,28 @@ function handleModuleDirectivesPlugin() {
  * This is done so that your code runs equally well on the site and in the odr.
  * The details are here: https://dev.vk.com/mini-apps/development/on-demand-resources.
  */
-export default defineConfig({
-  base: './',
+export default defineConfig(({ mode }) => {
+  // Загружаем переменные окружения для текущего режима
+  const env = loadEnv(mode, process.cwd(), '');
 
-  plugins: [
-    react(),
-    handleModuleDirectivesPlugin(),
-    legacy({
-      targets: ['defaults', 'not IE 11'],
-    }),
-  ],
+  return {
+    base: './',
 
-  build: {
-    outDir: 'build',
-  },
+    plugins: [
+      react(),
+      handleModuleDirectivesPlugin(),
+      legacy({
+        targets: ['defaults', 'not IE 11'],
+      }),
+    ],
+
+    // Определяем глобальные переменные, доступные в коде
+    define: {
+      'process.env.REACT_APP_API_URL': JSON.stringify(env.REACT_APP_API_URL),
+    },
+
+    build: {
+      outDir: 'dist',
+    },
+  };
 });

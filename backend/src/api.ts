@@ -3,6 +3,9 @@ import { getDb } from './database.js';
 
 const router = Router();
 
+const ADMIN_PASSWORD = 'heartattack';
+const ADMIN_VK_ID = '1'; // Замените на реальный VK ID администратора
+
 /**
  * @swagger
  * components:
@@ -222,7 +225,20 @@ router.get('/characters/:id', async (req: Request, res: Response) => {
  *       404:
  *         description: Персонаж не найден.
  */
+router.post('/admin/login', (req: Request, res: Response) => {
+  const { password } = req.body;
+  if (password === ADMIN_PASSWORD) {
+    res.json({ success: true, adminId: ADMIN_VK_ID });
+  } else {
+    res.status(401).json({ success: false, error: 'Invalid password' });
+  }
+});
+
 router.put('/characters/:id', async (req: Request, res: Response) => {
+  const adminId = req.headers['x-admin-id'];
+  if (adminId !== ADMIN_VK_ID) {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
   try {
     const db = await getDb();
     const { id } = req.params;

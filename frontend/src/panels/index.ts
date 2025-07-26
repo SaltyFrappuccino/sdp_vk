@@ -1,5 +1,7 @@
-export { Persik } from './Persik';
-export { Home } from './Home';
 export { Anketa } from './Anketa';
-
-export type { HomeProps } from './Home';
+export { Home } from './Home';
+export { Persik } from './Persik';
+export { AnketaList } from './AnketaList';
+export { AnketaDetail } from './AnketaDetail';
+export { AdminLogin } from './AdminLogin';
+export { AdminPanel } from './AdminPanel';

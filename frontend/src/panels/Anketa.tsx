@@ -59,7 +59,7 @@ export const Anketa: FC<AnketaProps> = ({ id, fetchedUser }) => {
     // IV. КОНТРАКТ
     contracts: [emptyContract],
     // V. ИНВЕНТАРЬ И РЕСУРСЫ
-    inventory: {},
+    inventory: '',
     currency: 0,
   });
 
@@ -108,7 +108,8 @@ export const Anketa: FC<AnketaProps> = ({ id, fetchedUser }) => {
 
 
     try {
-      const response = await fetch('http://193.162.143.80/api/characters', {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await fetch(`${apiUrl}/characters`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -202,6 +203,9 @@ export const Anketa: FC<AnketaProps> = ({ id, fetchedUser }) => {
         <FormItem top="Архетип(ы)">
           <Input name="archetypes" value={formData.archetypes} onChange={handleChange} placeholder="[Дуэлянт], [Тактик]..." />
         </FormItem>
+        <FormItem top="Атрибуты">
+          <Textarea name="attributes" value={formData.attributes as string} onChange={handleChange} placeholder="Сила: Дилетант (1) ..." />
+        </FormItem>
       </Group>
 
       <Group header={<Header>IV. КОНТРАКТ(Ы)</Header>}>
@@ -224,6 +228,9 @@ export const Anketa: FC<AnketaProps> = ({ id, fetchedUser }) => {
       </Group>
 
       <Group header={<Header>V. ИНВЕНТАРЬ И РЕСУРСЫ</Header>}>
+        <FormItem top="Инвентарь">
+          <Textarea name="inventory" value={formData.inventory} onChange={handleChange} />
+        </FormItem>
          <FormItem top="Валюта (Кредиты ₭)">
           <Input name="currency" type="number" value={formData.currency} onChange={handleChange} />
         </FormItem>
